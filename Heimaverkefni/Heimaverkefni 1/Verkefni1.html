@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+		<style>
+			a{
+				text-decoration: none;
+			}
+			input{
+				border:none; 
+				border-bottom: 2px solid;
+				border-color: #D3D3D3;
+			}
+			input:focus{
+				border-color: #ff6347;
+				outline-width: 0;
+			}
+		</style>
+</head>
+	<body>		
+		<div id="app">
+				<input v-model = "userinput" type="text">
+					<a v-bind:href="'https://www.google.is/search?q=' + userinput" v-bind:style="userinput  ? 'color:red;' : 'color:black;'">your search</a>
+		</div>
+			<script src="https://unpkg.com/vue"></script>
+			<script type="text/javascript">
+				var app = new Vue({
+					el: "#app",
+					data: {
+						userinput: '',
+					}
+				});
+			</script>
+	</body>
+</html>
