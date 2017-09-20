@@ -8,8 +8,9 @@
 		<div id="app">
 			<input type="text" v-model = 'task'>
 			<button @click = 'append'>Create task</button>
-				<ul></ul>
+				<ul>
 					<li v-for = "value in tasks">{{ value }}</li>
+				</ul>
 		</div>
 			<script src="https://unpkg.com/vue"></script>
 			<script type="text/javascript">
