@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+	<body>
+		<div id="app">
+			
+		</div>
+			<script src="https://unpkg.com/vue"></script>
+			<script type="text/javascript">
+				var app = new Vue({
+					el: "#app",
+					data: {
+						countries: ["Iceland","Iceland","Ireland","Iceland","Ireland",]
+					},
+					computed:{
+						OnlyIceland: function(){
+							return this.countries.filter(function(country){return country === "Iceland";});
+						}
+					}
+				});
+			</script>
+	</body>
+</html>	
