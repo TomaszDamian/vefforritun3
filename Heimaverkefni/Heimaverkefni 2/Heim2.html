@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--https://ayoisaiah.com/vuejs-todolist-app/-->
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+	<body>
+		<div class="container" id="todo">
+			<section class="panel">
+				
+				<input type="checkbox" id="mark-all">
+				
+				<input type="text" placeholder="What do you need to do?" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask">
+
+				<button>Clear list</button>
+				
+			</section>
+			<ul class="list">
+				<li>
+					
+					<input type="checkbox" class="checkbox">
+
+					<input type="text" class="text-input">
+
+					<label for="checkbox"></label>
+
+					<button class="delete">X</button>
+
+				</li>
+			</ul>
+			<pre>{{ $data }}</pre>
+		</div>
+			<script src="https://unpkg.com/vue"></script>
+			<script type="text/javascript">
+				var app = new Vue({
+					el: "#todo",
+					data: {
+						newTask: "",
+						taskList: []
+					},
+					methods:{
+						addTask: function(){
+							var task = this.newTask.trim();
+							if(task){
+								this.taskList.push({
+									text:task,
+									checked: false
+								});
+								this.newTask = "";
+							}
+						}
+					}
+				});
+			</script>
+	</body>
+</html>
