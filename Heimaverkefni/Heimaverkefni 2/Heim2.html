@@ -8,6 +8,7 @@
 </head>
 	<body>
 		<div class="container" id="todo">
+			
 			<section class="panel">
 				
 				<input type="checkbox" id="mark-all" :checked="areAllSelected" @click="selectAll">
@@ -17,6 +18,7 @@
 				<button @click = "clearList">Clear list</button>
 				
 			</section>
+			
 			<ul class="list">
 				<li v-for="task in taskList" :class="{done: task.checked}">
 					
@@ -28,7 +30,9 @@
 
 				</li>
 			</ul>
+			
 			<pre>{{ $data }}</pre>
+		
 		</div>
 			<script src="https://unpkg.com/vue"></script>
 			<script type="text/javascript">
