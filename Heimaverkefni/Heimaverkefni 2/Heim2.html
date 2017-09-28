@@ -20,27 +20,31 @@
 			</section>
 			
 			<ul class="list">
+				
 				<li v-for="task in taskList" :class="{done: task.checked}">
 					
 					<input type="checkbox" class="checkbox" v-model="task.checked">
 
-					<label for="checkbox">{{ task.text }}</label>
+					<label for="checkbox" @click="EditTask(task)" v-show="!task.edit">{{ task.text }}</label>
+					<input type="text" class="text-input" v-show="task.edit" v-on:keyup.enter="EditDone(task)" v-model="task.text">
 
 					<button class="delete" @click="removeTask(task)">X</button>
 
 				</li>
+			
 			</ul>
 			
 			<pre>{{ $data }}</pre>
 		
 		</div>
+		<label></label>
 			<script src="https://unpkg.com/vue"></script>
 			<script type="text/javascript">
 				var app = new Vue({
 					el: "#todo",
 					data: {
 						newTask: "",
-						taskList: []
+						taskList: [],
 					},
 
 					computed: {
@@ -57,7 +61,8 @@
 							if(task){
 								this.taskList.push({
 									text:task,
-									checked: false
+									checked: false,
+									edit: false
 								});
 								this.newTask = "";
 							}
@@ -76,6 +81,12 @@
 							for(var i = 0; i< this.taskList.length; i++){
 								this.taskList[i].checked = targetValue;
 							}
+						},
+						EditTask: function(Task){
+							Task.edit = true;
+						},
+						EditDone: function(Task){
+							Task.edit = false;
 						}
 					}
 				});
