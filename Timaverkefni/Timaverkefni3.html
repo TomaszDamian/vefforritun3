@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+	<body>
+		<div id="app">
+			<p v-for = 'Country in CountryAndPopulation'>{{Country.name + " (" + Country.population + ")"}}</p>
+			<p v-for = 'Country in CountryAndPopulation' v-text = 'Country.name + " " + Country.population'></p>
+		</div>
+			<script src="https://unpkg.com/vue"></script>
+			<script type="text/javascript">
+				var app = new Vue({
+					el: "#app",
+					data: {
+						CountryAndPopulation: [
+							{name:'Iceland', population:334252}
+						]
+					}
+				});
+			</script>
+	</body>
+</html>
