@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
+</head>
+<body>
+	<div id="app">
+	<section class="hero is-success is-fullheight">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<h1 class="title">
+				decimalBinary
+				</h1>
+				<div class="columns">
+					<div class="column is-half is-offset-one-quarter">
+						<div class="field">
+		  					<div class="control">
+								<input placeholder="decimal" type="number" class="input" v-model="decimal">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-half is-offset-one-quarter">
+						<div class="field">
+		  					<div class="control">
+								<input placeholder="binary" type="number" class="input" v-model="binary">
+							</div>
+						</div> 
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-half is-offset-one-quarter">
+						<div class="field">
+		  					<div class="control">
+								<input placeholder="hexadecimal" type="input" class="input" v-model="hexadecimal">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="index.js"></script>
+</body>
+</html>
