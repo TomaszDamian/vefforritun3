@@ -8,7 +8,7 @@ Vue.component("dropdown",{
 `
 <div class="dropdown" :class="IsActive?'is-active':''">
 	<div class="dropdown-trigger">
-		<button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="IsActive ^= IsActive">
+		<button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="IsActive = !IsActive">
 			<span>Dropdown button</span>
 			<span class="icon is-small">
 				<i class="fa fa-angle-down" aria-hidden="true"></i>
