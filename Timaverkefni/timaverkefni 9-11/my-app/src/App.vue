@@ -1,30 +1,39 @@
 <template>
   <div id="app">
-    <modal @close="isVisable = false" v-show="isVisable">Thonkong</modal>
-    <button @click="isVisable = true" class="button is-primary is-outlined">show Modal</button>
+    <div class="concertDiv" v-for="concerts in ResponseData">
+      <h3 class="title">{{ concerts.eventDateName }}</h3>
+      <h5 class="subtitle">{{ concerts.eventHallName }}</h5>
+      <img :src="concerts.imageSource">
+    </div>
   </div>
 </template>
 
 <script>
-import box from "./components/box.vue";
-import pbutton from "./components/button.vue";
-import obutton from "./components/obutton.vue";
-import closebutton from "./components/closebutton.vue";
-import modal from "./components/Modal.vue"
-
+import axios from 'axios'
 export default {
-  components:{box, pbutton, obutton, closebutton, modal},
-  name: 'app',
-  data() {
-    return {
-      isVisable: false,
+
+  data(){
+    return{
+      ResponseData: [],
     }
+  },
+  mounted(){
+    var self = this;
+    axios.get('http://apis.is/concerts')
+      .then(function(response){
+        self.ResponseData = response.data.results;
+      })
+      .catch(function(errors){
+        console.log(errors)
+      });
   }
 }
 </script>
 
-<style lang="scss">
-@import "~bulma/bulma";
+<style>
+.subtitle{
+  color: #0000ff;
+}
 body{
   padding:20px;
 }
