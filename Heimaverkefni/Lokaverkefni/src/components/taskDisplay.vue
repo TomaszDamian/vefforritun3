@@ -1,13 +1,8 @@
 <template>
   <div class="columns" id="app">
-  	
-  	<div class="TaskAddcontainer column is-two-thirds has-text-centered is-offset-2 inline-block">
   		<taskAdd></taskAdd>
-  	</div>
-    
-
     <div class="TaskContainer box column is-two-thirds has-text-centered is-offset-2 inline-block" v-for="Task in TaskList">
-      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver' : ''">{{ Task.title }}</h1>
+      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver' : ''" @click="UpdateStatus(Task.id)">{{ Task.title }}</h1>
       <p class="subtitle "> Created:{{ Task.created }}</p>
       <p class="subtitle "> Updated:{{ Task.updated }}</p>
     </div>
@@ -37,6 +32,20 @@ export default {
      catch(function(error) {
         console.log(error);
      });
+  },
+  methods:{
+    UpdateStatus(TaskID){
+      var id = TaskID;
+
+      axios.post('http://fjolbraut.org/api/tasks/' + id + '/status?api_token=tXf0juUmbRcD7FMZKJzhN7mcYRV2SutX1nvgfZxLRc6Z19eIdqlfgKl4uQrI')
+
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
   }
 }	
 </script>
