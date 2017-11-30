@@ -1,7 +1,7 @@
 <template>
 	<div class="MainDiv column is-two-thirds has-text-centered is-offset-2 inline-block">
 		<div class="inputDiv">
-			<input v-model="TaskToAdd" type="text" class="input is-primary">
+			<input v-model="TaskToAdd" type="text" class="input is-primary" @keydown.enter="SendDataToAPI">
 			<label class="checkbox">
 				<p class="subtitle IsFinished">Finished:</p>
 				<input type="checkbox" class="checkbox" v-model="FinishedorNot">
@@ -27,16 +27,15 @@ export default {
 			axios.post('http://fjolbraut.org/api/tasks?api_token=tXf0juUmbRcD7FMZKJzhN7mcYRV2SutX1nvgfZxLRc6Z19eIdqlfgKl4uQrI', {
             	title: cthis.TaskToAdd,
             	completed: cthis.FinishedorNot
-			     })
-			     .then(function(response) {
-			        console.log(response);
-			        cthis.TaskToAdd = ""
-			        cthis.FinishedorNot = false;
-			     })
-			     .catch(function(error) {
-			        console.log(error);
-			     });
-
+			})
+			.then(function(response) {
+				cthis.TaskToAdd = ""
+				cthis.FinishedorNot = false;
+				cthis.$emit("Update")
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 		}
 	}
 }

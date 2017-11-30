@@ -1,8 +1,14 @@
 <template>
   <div class="columns" id="app">
-  		<taskAdd></taskAdd>
+    <div class="Info column is-1 FloatLeft">
+      <p class="infoText is-size-7">click on the title to update status</p>
+      <br>
+      <br>
+      <p class="infoText is-size-7">Updating can be a little slow due to the delay of the data sending</p>
+    </div>
+  		<taskAdd @Update="GetDataAgain()"></taskAdd>
     <div class="TaskContainer box column is-two-thirds has-text-centered is-offset-2 inline-block" v-for="Task in TaskList">
-      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver' : ''" @click="UpdateStatus(Task.id)">{{ Task.title }}</h1>
+      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver' : ''" @click="UpdateStatus(Task.id), GetDataAgain()">{{ Task.title }}</h1>
       <p class="subtitle "> Created:{{ Task.created }}</p>
       <p class="subtitle "> Updated:{{ Task.updated }}</p>
     </div>
@@ -26,9 +32,9 @@ export default {
             api_token: 'tXf0juUmbRcD7FMZKJzhN7mcYRV2SutX1nvgfZxLRc6Z19eIdqlfgKl4uQrI'
         }
      })
-     .then(function(response) {
-        self.TaskList = response.data;
-     }).
+    .then(function(response) {
+      self.TaskList = response.data;
+    }).
      catch(function(error) {
         console.log(error);
      });
@@ -38,13 +44,27 @@ export default {
       var id = TaskID;
 
       axios.post('http://fjolbraut.org/api/tasks/' + id + '/status?api_token=tXf0juUmbRcD7FMZKJzhN7mcYRV2SutX1nvgfZxLRc6Z19eIdqlfgKl4uQrI')
-
       .then(function(response) {
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
       });
+    },
+    GetDataAgain(){
+      var self = this
+      setTimeout(function(){
+        axios.get('http://fjolbraut.org/api/tasks', {
+        params: {
+          api_token: 'tXf0juUmbRcD7FMZKJzhN7mcYRV2SutX1nvgfZxLRc6Z19eIdqlfgKl4uQrI'
+        }
+        })
+        .then(function(response) {
+          self.TaskList = response.data;
+        }).
+        catch(function(error) {
+          console.log(error);
+        });
+      },30);
     }
   }
 }	
@@ -53,6 +73,7 @@ export default {
 <style lang="scss">
 h1{
   margin:0px !important;
+  cursor:pointer;
 }
 p{
   margin:0px !important;
@@ -60,6 +81,10 @@ p{
 }
 .CrossedOver{
   text-decoration: line-through;
+}
+.infoText{
+  color:#c9c9c9;
+  text-align:left;
 }
 #app{
   display:inline;
