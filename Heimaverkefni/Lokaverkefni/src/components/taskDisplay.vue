@@ -8,7 +8,9 @@
     </div>
   		<taskAdd @Update="GetDataAgain()"></taskAdd>
     <div class="TaskContainer box column is-two-thirds has-text-centered is-offset-2 inline-block" v-for="Task in TaskList">
-      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver' : ''" @click="UpdateStatus(Task.id), GetDataAgain()">{{ Task.title }}</h1>
+      
+      <h1 class="title FloatLeft" :class="Task.completed?'CrossedOver':'NotFinished'" @click="UpdateStatus(Task.id), GetDataAgain()">{{ Task.title }}</h1>
+      
       <p class="subtitle "> Created:{{ Task.created }}</p>
       <p class="subtitle "> Updated:{{ Task.updated }}</p>
     </div>
@@ -81,6 +83,12 @@ p{
 }
 .CrossedOver{
   text-decoration: line-through;
+  color: red;
+  transition:color 1s;
+}
+.NotFinished{
+  color: #1e4e99;
+  transition:color 1s;
 }
 .infoText{
   color:#c9c9c9;

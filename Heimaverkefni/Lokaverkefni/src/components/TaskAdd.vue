@@ -1,13 +1,15 @@
 <template>
 	<div class="MainDiv column is-two-thirds has-text-centered is-offset-2 inline-block">
 		<div class="inputDiv">
+			<button @click="SendDataToAPI" class="button is-link">submit Task</button>
 			<input v-model="TaskToAdd" type="text" class="input is-primary" @keydown.enter="SendDataToAPI">
-			<label class="checkbox">
-				<p class="subtitle IsFinished">Finished:</p>
-				<input type="checkbox" class="checkbox" v-model="FinishedorNot">
-			</label>
+			<div class="labelBox">
+				<label class="checkbox">
+					<p class="subtitle IsFinished">Finished:</p>
+					<input type="checkbox" class="checkbox" v-model="FinishedorNot">
+				</label>
+			</div>
 		</div>
-		<button @click="SendDataToAPI" class="button is-link">submit Task</button>
 	</div>
 </template>
 
@@ -43,11 +45,15 @@ export default {
 
 <style>
 .MainDiv{
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 	text-align: left;
+	background: #90e723;
+	border-radius: 10px;
+	border: 1px solid #b30000;
 }
 .inputDiv{
-	float: left;
+	width: 100%;
+	height: 40px;
 }
 .IsFinished{
 	display: inline;
@@ -55,8 +61,15 @@ export default {
 }
 .input{
 	width: 300px;
+	float: left;
+margin-right: 10px;
 }
 .button{
-	float: right;
+	float: left;
+	margin-right: 5px;
+}
+.labelBox{
+	float: left;
+	margin-top: 3px;
 }
 </style>
